@@ -59,7 +59,7 @@ SESSION_PATH=/
 SESSION_DOMAIN=null
 
 BROADCAST_CONNECTION=log
-FILESYSTEM_DISK=local
+FILESYSTEM_DISK=minio
 QUEUE_CONNECTION=database
 
 CACHE_STORE=database
@@ -88,6 +88,14 @@ AWS_BUCKET=
 AWS_USE_PATH_STYLE_ENDPOINT=false
 
 VITE_APP_NAME="${APP_NAME}"
+
+MINIO_ACCESS_KEY=minioadmin
+MINIO_SECRET_KEY=minioadmin
+MINIO_REGION=us-east-1
+MINIO_BUCKET=uasbasisdata
+MINIO_ENDPOINT=http://minio:9000
+MINIO_URL=http://localhost:9000 
+MINIO_USE_PATH_STYLE_ENDPOINT=true
 EOF
 else
   echo "📄 .env file already exists, overwriting with predefined environment variables..."
@@ -135,7 +143,7 @@ SESSION_PATH=/
 SESSION_DOMAIN=null
 
 BROADCAST_CONNECTION=log
-FILESYSTEM_DISK=local
+FILESYSTEM_DISK=minio
 QUEUE_CONNECTION=database
 
 CACHE_STORE=database
@@ -164,6 +172,13 @@ AWS_BUCKET=
 AWS_USE_PATH_STYLE_ENDPOINT=false
 
 VITE_APP_NAME="${APP_NAME}"
+MINIO_ACCESS_KEY=minioadmin
+MINIO_SECRET_KEY=minioadmin
+MINIO_REGION=us-east-1
+MINIO_BUCKET=uasbasisdata
+MINIO_ENDPOINT=http://minio:9000
+MINIO_URL=http://localhost:9000 
+MINIO_USE_PATH_STYLE_ENDPOINT=true
 EOF
 fi
 
@@ -209,12 +224,12 @@ chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Step 7: Run database migrations
-echo "🗃️ Running migrations..."
-php artisan migrate --force
+# echo "🗃️ Running migrations..."
+# php artisan migrate --force
 
 # Step 8: Run custom project init command
-echo "🚀 Running project:init..."
-php artisan project:init || true
+# echo "🚀 Running project:init..."
+# php artisan project:init || true
 
 # Step 9: Create storage symbolic link
 echo "🔗 Creating storage link..."
